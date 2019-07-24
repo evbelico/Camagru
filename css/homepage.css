@@ -1,0 +1,232 @@
+/* HEADER */
+
+#header {
+    display: block;
+    font-family: Georgia, monospace, serif;
+    background-color: #30ff9a;
+    color: #ffffff;
+    width: 100%;
+    border: none;
+    overflow: auto;
+}
+
+
+#header h1 {
+    font-style: oblique;
+    float: left;
+    font-size: 2.4vw;
+    margin-left: 1vw;
+
+}
+
+#header a {
+    float: right;
+    margin-right: 1vw;
+    margin-top: 1.3vw;
+    background-color: #30ff9a;
+    border-style: none;
+    border-radius: 10%;
+    color: #ffffff;
+    padding: 1vw 1vw;
+    text-decoration: none;
+    font-size: 1vw;
+    cursor: pointer;
+}
+
+#header a:hover, #footer a:hover { color: #00d76f; }
+
+/* FOOTER */
+
+#footer {
+    display: inline-block;
+    width: 100%;
+    margin-top: 3%;
+    font-family: Georgia, monospace, serif;
+    border: none;
+    overflow: auto;
+    color: #ffffff;
+    background-color: #30ff9a;
+}
+
+#footer a {
+    color: #ffffff;
+    float: left;
+    margin-left: 1vw;
+    text-decoration: none;
+    font-size: 1.1vw;
+    padding: 1vw 1vw;
+    cursor: pointer;
+}
+
+#footer p {
+    float: right;
+    font-size: 1.1vw;
+    margin: 1vw;
+    text-decoration: none;
+}
+
+/* MAIN PAGES */
+
+#content {
+    display: block;
+    width: 70%;
+    height: 70%;
+    font-size: 1vw;
+    margin: 10% auto;
+    padding: 5%;
+    text-align: center;
+    border-style: solid;
+    border-width: 0.20vw;
+    border-color: #30ff9a;
+}
+
+#content h3 {
+    font-size: 1.4vw;
+}
+
+#content input { font-size: 1vw; margin-bottom: 1%; width: 30%}
+
+label { font-size: 1.2vw; font-weight: bold; }
+
+.login {
+    font-size: 1.8vw;
+    color: #FFFFFF;
+    background-color: #30ff9a;
+}
+
+/* WEBCAM AND FILE UPLOAD */
+
+#main .camera-booth {
+    float: right;
+    width: 75%;
+}
+
+#main #filter-bar {
+    float: left;
+    width: 25%;
+}
+
+#filter-bar { margin: 3vw; }
+
+#filter-bar img { width: 20%; }
+
+#filter-bar input {
+    height: 1vw;
+    width: 1vw;
+}
+
+button {
+    background-color: #30ff9a;
+    font-style: oblique;
+    margin-top: 0.3vw;
+    margin-bottom: 0.3vw;
+    font-size: 1vw;
+    padding: 0.5vw 1vw;
+}
+
+button:hover { background-color: #00d76f; }
+
+.typewriter, button, input { font-family: 'Lucida Console', Courier, monospace; }
+
+
+.camera-booth { margin: auto; }
+
+.camera-booth img { width: 75%; }
+
+video, canvas {
+    width: 75%;
+}
+
+.capture-button {
+    display: block;
+    width: 75%;
+    padding: 3% 0%;
+    background-color: #30ff9a;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+}
+
+#canvas { display: none; }
+
+#sidebar {
+    display: none;
+    width: 100%;
+    margin-top: 2%;
+    border-top: 1vw solid #30ff9a;
+}
+
+#snapshots img {
+    display: inline-block;
+    margin: 2%;
+}
+
+/* GALLERY PAGE */
+
+#select-gallery {
+    margin-top: 5%;
+    text-align: center;
+}
+
+#select-gallery input {
+    font-size: 1vw;
+    height: 1.7vw;
+}
+
+.centered-gallery {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1%;
+}
+
+.centered-gallery h3 {
+    font-size: 1.3vw;
+}
+
+#gallery-container {
+    margin-top: 5%;
+    width: 100%;
+    display: block;
+}
+
+#container {
+    width: 80%;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 3%;
+    border-style: solid;
+    border-width: 0.20vw;
+    border-color: #30ff9a;
+
+}
+
+#container input, #container p {
+    font-size: 1.1vw;
+    text-align: left;
+    width: 99.3%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1%;
+}
+
+#container input {
+    margin-bottom: 2%;
+    height: 1.5vw;
+}
+#container img { width: 100%; }
+
+#container button {
+    width: 30%;
+    height: 3vw;
+    margin-bottom: 0.5%;
+    font-size: 1.5vw;
+    padding: 0.5%;
+    margin: 1%;
+}
+
+#container .delete-btn { background-color: #FF0000; }
+
+.display-none { display: none; }
+
+.active { text-decoration: underline!important; }

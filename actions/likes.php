@@ -1,0 +1,23 @@
+<?php
+require_once(dirname(__FILE__).'/../functions/likes.php');
+session_start();
+
+if (isset($_SESSION['loggued-on-user']) && !empty($_SESSION['loggued-on-user'])) {
+    $liker = htmlspecialchars($_SESSION['loggued-on-user']);
+    $likerid = htmlspecialchars($_SESSION['userid']);
+    $userid = htmlspecialchars($_POST['userid']);
+    $imageid = htmlspecialchars($_POST['imageid']);
+    $type = htmlspecialchars($_POST['like']);
+    $snapshot_src = htmlspecialchars($_POST['snapshot']);
+
+    if ($type == 'L') {
+        add_like($liker, $likerid, $userid, $imageid, $type, $snapshot_src);
+    }
+    else if ($type == 'D') {
+        add_dislike($liker, $likerid, $userid, $imageid, $type, $snapshot_src);
+    }
+}
+else {
+    header("Location: ../gallery.php?error=usernotfoundcouldnotlikedislike");
+}
+?>
