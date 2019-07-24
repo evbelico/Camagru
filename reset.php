@@ -5,7 +5,6 @@ require_once('config/database.php'); ?>
     <?php if (forgot_token($_GET['reset']) == TRUE) { ?>
         <div id="content">
             <div class="typewriter">
-            <form action="actions/forgot.php" method="post">
                 <h3>Password reset</h3><br/>
                 <label for="mail">E-mail</label><br/>
                 <input class="typewriter" id="e-mail" type="text" name="mail" placeholder="E-mail" required>
@@ -17,7 +16,6 @@ require_once('config/database.php'); ?>
                 <input class="typewriter" id="pwd-confirm" type="password" name="password-reset-confirm" placeholder="Enter new password again" required>
                 <br/>
                 <button id="submit-btn" type="submit" name="reset-submit">Submit</button>
-            </form>
             </div>
         </div>
         <script type="text/javascript" src="<?php echo URLROOT; ?>javascript/password.js"></script>

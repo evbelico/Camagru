@@ -10,12 +10,13 @@ if (isset($_POST['delete-submit'])) {
         $mail = htmlspecialchars($_POST['mail']);
         if ($password_confirm == $password) {
             if (delete_account($userid, $mail, $password, $password_confirm) == TRUE) {
-                header("Location: ../index.php");
                 unset($_SESSION['userid']);
                 unset($_SESSION['loggued-on-user']);
+                $_SESSION['deletion'] = "Your account was"
+                header("Location: ../index.php");
             }
             else {
-                header("Location: ../user.php?error=usernotfound");
+                $_SESSION['deletion-error'] = "Your accound could not be deleted. Try again.";
             }
         }
         else 
