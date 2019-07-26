@@ -14,8 +14,8 @@ let streaming = false,
     width = 640,
     height = 0,
 
-	cactus = document.getElementById('cactus'),
-	cat_1 = document.getElementById('cat_1'),
+	cactus = document.getElementById('cactus.png'),
+	cat_1 = document.getElementById('cat_1.png'),
 
 	ctx = canvas.getContext('2d');
 
@@ -62,35 +62,17 @@ video.addEventListener('canplay', function (event) {
     }
 }, false);
 
-function ifChecked(check) {
-	/*if (streaming) {
-		if (check.id == 'cactus.png' || check.id == 'cat_1.png') {
-			
-		}
-		/*if (check.id == 'cactus.png') {
-			cactus.style.display = "block";
-			cat_1.style.display = "none";
-			
-		}
-		else if (check.id == 'cat_1.png') {
-			cactus.style.display = "none";
-			cat_1.style.display = "block";
-		}
-	}*/
+function ifChecked() {
 	input.style.display = "block";
 	captureBtn.disabled = false;
 	uploadBtn.disabled = false;
 };
 
-function takePicture() {
-	let snapshot = new Image();
+function takePicture(snapshot, filter) {
 	height = 480;
 	canvas.width = width;
 	canvas.height = height;
 
-	snapshot.src = document.querySelector('input[name="img"]:checked').value;
-	let separator = snapshot.src.split('/');
-	let filter = '/filters/' + separator[separator.length - 1];
 	
 	ctx.drawImage(video, 0, 0, width, height, 0, 0, width, height);
 	let data64 = canvas.toDataURL('image/png');
@@ -187,15 +169,19 @@ function ajaxToBack(filter, data, preview) {
 };
 
 capture.addEventListener('click', function (event) {
+	let snapshot = new Image();
 	height = 480;
-	if (width && height) {
-		takePicture();
+	snapshot.src = document.querySelector('input[name="img"]:checked').value;
+	let separator = snapshot.src.split('/');
+	let filter = '/filters/' + separator[separator.length - 1];
+	if (width && height && filter) {
+		takePicture(snapshot, filter);
 	}
     event.preventDefault();
 }, false);
 
 input.addEventListener('change', function (event) {
-	if (input.files[0] != null) {
+	if (input.files[0] != null && ifChecked() != '') {
 		if (input.files[0].size > 1048576) {
 			alert("File is too big. Files should not weigh more than 1MB.");
 		}

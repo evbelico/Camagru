@@ -10,9 +10,8 @@ function register($username, $mail, $password) {
             $request = $cxn->prepare($sql);
             $request->execute(array(':username' => $username, ':mail' => $mail));
             $flag = $request->fetch(PDO::FETCH_ASSOC);
-            if ($flag > 0) {
-                header("Location: ../register.php?error=usernamemailalreadytaken&mail=".$mail);
-            }
+            if ($flag > 0)
+                return (FALSE);
             else {
                 ### Enter information into the database if it's clear
                 $password = password_hash($password, PASSWORD_DEFAULT);
