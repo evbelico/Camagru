@@ -79,8 +79,11 @@ function takePicture(snapshot, filter) {
 	if (filter == '/filters/cat_1.png') {
 		ctx.drawImage(snapshot, width - 200, height - 108, 200, 108);
 	}
-	else if (filter == '/filters/cactus.png') {
-		ctx.drawImage(snapshot, width - 170, height - 170, 170, 170);
+	else if (filter == '/filters/oldctus.png') {
+		ctx.drawImage(snapshot, (width - width + 250), (height / 2 - 150), 400, 400);
+	}
+	else if (filter == '/filters/old_lamapresident.png') {
+		ctx.drawImage(snapshot, width - 420, height - 460, 663, 570);
 	}
 	let preview = canvas.toDataURL('image/png');
 	picture.setAttribute('src', preview);
@@ -105,11 +108,14 @@ function sendSnapshot() {
 			let separator = snap.src.split('/');
 			let filter = '/filters/' + separator[separator.length - 1];
 
-			if (filter == '/filters/cactus.png') {
-				ctx.drawImage(snap, width - 170, height - 170, 170, 170);
-			}
-			else if (filter == '/filters/cat_1.png') {
+			if (filter == '/filters/cat_1.png') {
 				ctx.drawImage(snap, width - 200, height - 108, 200, 108);
+			}
+			else if (filter == '/filters/oldctus.png') {
+				ctx.drawImage(snap, (width - width + 250), (height / 2 - 150), 400, 400);
+			}
+			else if (filter == '/filters/old_lamapresident.png') {
+				ctx.drawImage(snap, width - 420, height - 460, 663, 570);
 			}
 			let preview = canvas.toDataURL('image/png');
 			picture.setAttribute('src', preview);

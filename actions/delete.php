@@ -8,19 +8,29 @@ if (isset($_POST['delete-submit'])) {
         $password = htmlspecialchars($_POST['password']);
         $password_confirm = htmlspecialchars($_POST['password-confirm']);
         $mail = htmlspecialchars($_POST['mail']);
+        $ok = true;
+        $messages = array();
         if ($password_confirm == $password) {
             if (delete_account($userid, $mail, $password, $password_confirm) == TRUE) {
-                unset($_SESSION['userid']);
-                unset($_SESSION['loggued-on-user']);
-                $_SESSION['deletion'] = "Your account was"
+                $_SESSION['userid'] = null;
+                $_SESSION['loggued-on-user'] = null;
+                $_SESSION['mail'] = null;
                 header("Location: ../index.php");
             }
             else {
-                $_SESSION['deletion-error'] = "Your accound could not be deleted. Try again.";
+                $ok = false;
+                $messages[] = "Your account could not be deleted. Try again.";
             }
         }
-        else 
-            header("Location: ../user.php?error=passwordsdonotmatch");
+        else {
+            $ok = false;
+            $messages[] = "Passwords do not match.";
+        }
+        if (!$ok) {
+            $_SESSION['delete-account-error'] = $messages;
+            header("Location: ../user.php");
+            exit;
+        }
     }
 }
 

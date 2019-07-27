@@ -5,11 +5,14 @@ require_once('functions/montage.php');
 <?php if (isset($_SESSION['loggued-on-user']) && $_SESSION['loggued-on-user'] != '') { ?>
 	<div id="main">
 		<div id="filter-bar">
-			<input type="radio" id="cactus.png" name="img" value="<?php echo URLROOT; ?>filters/cactus.png" onclick="ifChecked('cactus.png')">
-			<img src="filters/cactus.png" alt="cactus">
+			<input type="radio" id="cactus.png" name="img" value="<?php echo URLROOT; ?>filters/oldctus.png" onclick="ifChecked('oldctus.png')">
+			<img src="filters/oldctus.png" alt="cactus">
 			<br />
 			<input type="radio" id="cat_1.png" name="img" value="<?php echo URLROOT; ?>filters/cat_1.png" onclick="ifChecked('cat_1.png')">
 			<img src="filters/cat_1.png" alt="black cat">
+			<br />
+			<input type="radio" id="lamapresident.png" name="img" value="<?php echo URLROOT; ?>filters/old_lamapresident.png" onclick="ifChecked('old_lamapresident.png')">
+			<img src="filters/old_lamapresident.png" alt="backolama">
 		</div>
         <div class="camera-booth">
             <video id="video" autoplay onclick="this.paused ? this.play() : this.pause();"></video>

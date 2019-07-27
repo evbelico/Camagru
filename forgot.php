@@ -2,7 +2,19 @@
 <div id="content">
     <div class="typewriter">
         <h3>Forgot password</h3>
-
+        <?php if (isset($_SESSION['forgot-error']) && !empty($_SESSION['forgot-error'])) {
+            echo '<ul id="form-messages">';
+            echo '<li>'. $_SESSION['forgot-error'] .'</li>';
+            echo '</ul>';
+            unset($_SESSION['forgot-error']);
+            }
+            else if (isset($_SESSION['forgot-msg']) && !empty($_SESSION['forgot-msg'])) {
+                echo '<ul id="form-successes">';
+                echo '<li>'. $_SESSION['forgot-msg'] .'</li>';
+                echo '</ul>';
+                unset($_SESSION['forgot-msg']);
+            }
+        ?>
         <form action="actions/forgot.php" method="post">
             <label for="mail">E-mail</label>
             <br />

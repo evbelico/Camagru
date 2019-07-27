@@ -21,6 +21,14 @@ function init_montage($path, $filter, $image_path) {
 
 	$width_dest = $width_template - $width_mod;
 	$height_dest = $height_template - $height_mod;
+	if ($filter == '/filters/old_lamapresident.png') {
+		$width_dest = $width_template - 420;
+		$height_dest = $height_template - 460;
+	}
+	else if ($filter == '/filters/oldctus.png') {
+		$width_dest = ($width_template - $width_template + 250);
+		$height_dest = ($height_template / 2 - 150);
+	}
 
 	imagecopymergealpha($template, $mod, $width_dest, $height_dest, 0, 0, $width_template, $height_template, 100);
 	imagepng($template, $path);
@@ -42,21 +50,4 @@ function create_miniature($path) {
 	imagecopyresampled($miniature, $source, 0, 0, 0, 0, $width_miniature, $height_miniature, $width_source, $height_source);
 	$miniature64 = str_replace($_SESSION['loggued-on-user'], $_SESSION['loggued-on-user'].'-MiniatureUnsaved', $path);
 	imagepng($miniature, $miniature64);
-}
-
-function display_miniatures() {
-	$username = htmlspecialchars($_SESSION['loggued-on-user']);
-	$miniature64_path = dirname(__FILE__).'/snapshots/';
-	$regex_miniature = preg_match('/^'.$username.'-MiniatureUnsaved-$/', $miniature64_path);
-	$tab = array();
-	$index = 0;
-	while ($regex_miniature[$index]) {
-		$tab[$index] = $regex_miniature[$index];
-		$index++;
-	}
-	return ($tab);
-}
-
-function delete_montage($image) {
-	imagedestroy($image);
 }

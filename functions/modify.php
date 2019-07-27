@@ -56,6 +56,7 @@ function modify_mail($mail, $new_mail, $password) {
                     $sql = "UPDATE camagru.users SET mail=:mail WHERE id=:id";
                     $request = $cxn->prepare($sql);
                     $request->execute(array(':mail' => $new_mail, ':id' => $result['id']));
+                    $_SESSION['mail'] = $new_mail;
                     return (TRUE);
                 }
             }
@@ -136,7 +137,7 @@ function forgot_password($mail) {
     }
 }
 
-function reset_password($mail, $password, $password_confirm) {
+function reset_password($mail, $password) {
     
     require(dirname(__FILE__).'/../config/database.php');
 
@@ -150,10 +151,7 @@ function reset_password($mail, $password, $password_confirm) {
             $sql = "UPDATE camagru.users SET `password`=:pass WHERE mail=:mail";
             $request = $cxn->prepare($sql);
             $request->execute(array(':pass' => $password, ':mail' => $result['mail']));
-            header("Location: ../signin.php");
         }
-        else
-            header("Location: ../register.php?error=usernotfoundornotvalidated");
     }
     catch (PDOException $e) {
         echo "ERROR : could not reset old password : ". $e->getMessage() ."\nAborting.\n";

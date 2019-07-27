@@ -16,7 +16,7 @@ if (isset($_POST['forgot-submit'])) {
     }
 }
 
-if (isset($_POST['reset-submit'])) {
+//if (isset($_POST['reset-submit'])) {
     if (isset($_POST['mail']) && isset($_POST['password-reset']) && isset($_POST['password-reset-confirm'])) {
         $ok = true;
         $messages = array();
@@ -25,16 +25,26 @@ if (isset($_POST['reset-submit'])) {
         $vpassword = htmlspecialchars($_POST['password-reset-confirm']);
         $pattern = '/^(?=.*[!@#$%^&*-])(?=.*[0-9])(?=.*[a-zA-Z]).{8,50}$/';
     if (!filter_var($mail, FILTER_VALIDATE_EMAIL) || $mail == '') {
-        header("Location: ../forgot.php?error=youfailedmate");
+        header("Location:".$_SERVER['PHP_SELF']."?".$_SERVER['QUERY_STRING']);
+        die;
     }
     else if (!preg_match($pattern, $password)) {
-        header("Location: ../forgot.php?error=unsecurepassword");
+        header("Location:".$_SERVER['PHP_SELF']."?".$_SERVER['QUERY_STRING']);
+        die;
     }
     else if ($vpassword != $password) {
-        header("Location: ../forgot.php?error=passwordsdonotmatch");
+        header("Location:".$_SERVER['PHP_SELF']."?".$_SERVER['QUERY_STRING']);
+        die;
     }
     else
-        reset_password($mail, $password, $vpassword);
+        if (reset_password($mail, $password) == TRUE)
+            header("Location: ../signin.php");
+        else {
+            $_SESSION['reset-error'] = "User not found.";
+            header("Location:".$_SERVER['PHP_SELF']."?".$_SERVER['QUERY_STRING']);
+            die;
+            return;
+        }
     }
-}
+//}
 ?>

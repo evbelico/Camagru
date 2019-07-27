@@ -3,6 +3,7 @@ require_once('html_fragments/header.php');
 require_once('config/database.php');
 require_once('functions/montage_todatabase.php');
 require_once('functions/comments.php');
+require_once('functions/likes.php');
 ?>
 <script type="text/javascript" src="<?php echo URLROOT; ?>javascript/comment.js"></script>
 <script type="text/javascript" src="<?php echo URLROOT; ?>javascript/like.js"></script>
@@ -85,17 +86,45 @@ require_once('functions/comments.php');
             if (isset($_SESSION['loggued-on-user']) && !empty($_SESSION['loggued-on-user']) && isset($_SESSION['userid']) && !empty($_SESSION['userid'])) {
                 $new_comment = '<input type="text" id="new-comment-'. $snapshots[$i]['id'] .'" name="new-comment" placeholder="Comment here" maxlength="1000" minlength="1">';
                 $send_button = '<button type="submit" id="submit-comment" name="submit-comment" onclick="submitComment('. $snapshots[$i]['id'] .', '. $snapshots[$i]['userid']. ', \'/snapshots/'. $snapshots[$i]['img'] .'\')">Submit</button>';
-                $like_button = '<button type="submit" id="submit-like-'. $snapshots[$i]['id'] .'" name="submit-like" onclick="submitLike('. $snapshots[$i]['id'] .', '. $snapshots[$i]['userid'] .', \'/snapshots/'. $snapshots[$i]['img'] .'\')"> &#8593; </button>';
-                $dislike_button = '<button type="submit" id="submit-dislike-'. $snapshots[$i]['id'] .'" name="submit-dislike" onclick="submitDislike('. $snapshots[$i]['id'] .', '. $snapshots[$i]['userid'] .', \'/snapshots/'. $snapshots[$i]['img'] .'\')"> &#8595; </button>';
+                
                 echo $new_comment;
                 echo '<br/>';
                 echo $send_button;
+
+                $likes = get_likes($_SESSION['userid'], $snapshots[$i]['id']);
+                $k = 0;
+                $type_l = 'style=""';
+                $type_d = 'style=""';
+
+                if ($likes != "") {
+                    while ($likes[$k] != null) {
+                        if ($likes[$k]['imageid'] == $snapshots[$i]['id']) {
+                            if ($likes[$k]['type'] == 'D')
+                                $type_d = 'style="display: none;"';
+                            else if ($likes[$k]['type'] == 'L')
+                                $type_l = 'style="display: none;"';
+                        }
+                        else if ($likes[$k]['imageid'] != $snapshots[$i]['id']) {
+                            $type_l = '';
+                            $type_d = '';
+                        }
+                        $k++;
+                    }
+                }
+                $like_button = '<button type="submit" '. $type_l .'  id="submit-like-'. $snapshots[$i]['id'] .'" name="submit-like" onclick="submitLike('. $snapshots[$i]['id'] .', '. $snapshots[$i]['userid'] .', \'/snapshots/'. $snapshots[$i]['img'] .'\')"> &#8593; </button>';
+                $dislike_button = '<button type="submit" '. $type_d .' id="submit-dislike-'. $snapshots[$i]['id'] .'" name="submit-dislike" onclick="submitDislike('. $snapshots[$i]['id'] .', '. $snapshots[$i]['userid'] .', \'/snapshots/'. $snapshots[$i]['img'] .'\')"> &#8595; </button>';
                 echo $like_button;
                 echo $dislike_button;
+                
+                $nb_likes_btn = '<button type="submit" id="display-like-'. $snapshots[$i]['id'] .'" name="display-like" disabled>'. get_nb_likes($snapshots[$i]['id']) .' &#8593; </button>';
+                $nb_dislikes_btn = '<button type="submit" id="display-dislike-'. $snapshots[$i]['id'] .'" name="display-dislike" disabled>'. get_nb_dislikes($snapshots[$i]['id']) .' &#8595; </button>';
+                echo $nb_likes_btn;
                 if ($_SESSION['userid'] == $snapshots[$i]['userid']) {
                     $delete_button = '<button type="submit" id="submit-delete-'. $snapshots[$i]['id'] .'" class="delete-btn" name="submit-delete" onclick="submitDelete('. $snapshots[$i]['id'] .', '. $snapshots[$i]['userid'] .', \'/snapshots/'. $snapshots[$i]['img'] .'\')"> Delete </button>';
                     echo $delete_button;
                 }
+                echo $nb_dislikes_btn;
+
             }
             $i++;
             echo '</div>';

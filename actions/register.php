@@ -35,9 +35,6 @@ if (isset($_POST['register-submit'])) {
     if ($ok) {
         if (register($username, $mail, $vpassword) == TRUE)
             header("Location: ../register_success.php");
-        //else if (!register($username, $mail, $vpassword)) {
-         //   $messages[] = "Username is already taken.";
-        //}
         else {
             $ok = false;
             $messages[] = "Registration failed. Try again.";

@@ -101,6 +101,15 @@
     border: 0.10vw solid #FF0000;
 }
 
+#content #form-successes {
+    width: 40%;
+    margin: 3% auto;
+    padding: 0.4%;
+    background-color: #a5f8a5;
+    color: #019401;
+    border: 0.10vw solid #019401;
+}
+
 #content label { font-size: 1.4vw; font-weight: bold; }
 
 .login {

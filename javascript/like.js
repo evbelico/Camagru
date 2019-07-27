@@ -16,6 +16,9 @@ function submitDislike(imageId, userId, snapshot) {
 
 function ajaxToBackLike(newLike, imageId, userId, snapshotDb) {
     let xhr = new XMLHttpRequest();
+    let nbLikes = document.getElementById('display-like-' + imageId);
+    let count = nbLikes.innerHTML[0];
+    nbLikes.innerHTML = parseInt(count * 1 + 1) + ' &#8593';
     newLike.style.display = 'none';
     newLike = 'L';
     xhr.open("POST", "actions/likes.php", true);
@@ -26,6 +29,9 @@ function ajaxToBackLike(newLike, imageId, userId, snapshotDb) {
 function ajaxToBackDislike(newDislike, imageId, userId, snapshotDb) {
 
     let xhr = new XMLHttpRequest();
+    let nbDislikes = document.getElementById('display-dislike-' + imageId);
+    let count = nbDislikes.innerHTML[0];
+    nbDislikes.innerHTML = parseInt(count * 1 + 1) + ' &#8595';
     newDislike.style.display = 'none';
     newDislike = 'D';
     xhr.open("POST", "actions/likes.php", true);
