@@ -101,12 +101,11 @@
     border: 0.10vw solid #FF0000;
 }
 
-#content label {font-size: 1.4vw;font-weight: bold;}
+#content label { font-size: 1.4vw; font-weight: bold; }
 
 .login {
     font-size: 1.8vw;
-    color: #FFFFFF;
-    background-color: #30ff9a;
+    color: #000000;
 }
 
 /* WEBCAM AND FILE UPLOAD */

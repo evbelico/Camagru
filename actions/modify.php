@@ -4,7 +4,7 @@ session_start();
 
 if (isset($_POST['username-submit'])) {
     if (isset($_SESSION['loggued-on-user']) && isset($_SESSION['userid'])) {
-        $username = htmlspecialchars(trim($_POST['username']));
+        $username = htmlspecialchars($_SESSION['loggued-on-user']);
         $new_username = htmlspecialchars(trim($_POST['new-username']));
         $password = htmlspecialchars(trim($_POST['password']));
         if (!preg_match('/^[a-zA-Z].{2,50}$/', $new_username))
@@ -20,10 +20,10 @@ if (isset($_POST['username-submit'])) {
 
 if (isset($_POST['mail-submit'])) {
     if (isset($_SESSION['loggued-on-user']) && isset($_SESSION['userid'])) {
-        $mail = htmlspecialchars(trim($_POST['mail']));
+        $mail = htmlspecialchars($_SESSION['mail']);
         $new_mail = htmlspecialchars(trim($_POST['new-mail']));
         $password = htmlspecialchars(trim($_POST['password']));
-        if (!filter_var($mail, FILTER_VALIDATE_EMAIL) || !filter_var($new_mail, FILTER_VALIDATE_EMAIL))
+        if (!filter_var($new_mail, FILTER_VALIDATE_EMAIL))
             header("Location: ../user.php?error=wrongmail");
         else {
             if (modify_mail($mail, $new_mail, $password) == TRUE)

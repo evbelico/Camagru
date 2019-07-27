@@ -72,7 +72,6 @@ function takePicture(snapshot, filter) {
 	height = 480;
 	canvas.width = width;
 	canvas.height = height;
-
 	
 	ctx.drawImage(video, 0, 0, width, height, 0, 0, width, height);
 	let data64 = canvas.toDataURL('image/png');
@@ -90,7 +89,6 @@ function takePicture(snapshot, filter) {
 };
 
 function sendSnapshot() {
-	let snap = new Image();
 	let snapshot = new Image();
 	height = 480;
 	canvas.width = width;
@@ -100,22 +98,22 @@ function sendSnapshot() {
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		ctx.drawImage(snapshot, 0, 0, snapshot.width, snapshot.height, 0, 0, width, height);
 		let data64 = canvas.toDataURL(snapshot.type);
-		window.URL.revokeObjectURL(snapshot.src);
-
-		snap.src = document.querySelector('input[name="img"]:checked').value;
-		let separator = snap.src.split('/');
-		let filter = '/filters/' + separator[separator.length - 1];
-
-		if (filter == '/filters/cactus.png') {
-			ctx.drawImage(snap, width - 170, height - 170, 170, 170);
-		}
-		else if (filter == '/filters/cat_1.png') {
-			ctx.drawImage(snap, width - 200, height - 108, 200, 108);
-		}
-		let preview = canvas.toDataURL('image/png');
-		picture.setAttribute('src', preview);
 
 		upload.onclick = function() {
+			let snap = new Image();
+			snap.src = document.querySelector('input[name="img"]:checked').value;
+			let separator = snap.src.split('/');
+			let filter = '/filters/' + separator[separator.length - 1];
+
+			if (filter == '/filters/cactus.png') {
+				ctx.drawImage(snap, width - 170, height - 170, 170, 170);
+			}
+			else if (filter == '/filters/cat_1.png') {
+				ctx.drawImage(snap, width - 200, height - 108, 200, 108);
+			}
+			let preview = canvas.toDataURL('image/png');
+			picture.setAttribute('src', preview);
+			window.URL.revokeObjectURL(snapshot.src);
 			ajaxToBack(filter, data64, preview);
 		}
 	}, false);
@@ -181,7 +179,7 @@ capture.addEventListener('click', function (event) {
 }, false);
 
 input.addEventListener('change', function (event) {
-	if (input.files[0] != null && ifChecked() != '') {
+	if (input.files[0] != null) {
 		if (input.files[0].size > 1048576) {
 			alert("File is too big. Files should not weigh more than 1MB.");
 		}

@@ -16,12 +16,12 @@ function add_comment($poster, $posterid, $userid, $imageid, $text, $snapshot_src
             $request = $cxn->prepare($sql);
             $request->execute(array(':userid' => $posterid, ':imageid' => $imageid, ':content' => $text));
 
-            $sql = "SELECT mail, username, mailing FROM camagru.users WHERE id = :userid";
+            $sql = "SELECT mail, username FROM camagru.users WHERE id=:userid AND mailing='Y'";
             $request = $cxn->prepare($sql);
             $request->execute(array(':userid' => $userid));
             $result = $request->fetch(PDO::FETCH_ASSOC);
 
-            if ($result > 0 && $result['mailing'] == 'Y') {
+            if ($result > 0) {
                 $style_img = 'style="display: block; width: 50%; border-style: solid; border-width: 2%;"';
                 $style_comment = 'style="display: block; width: 50%; border-style: solid; border-width: 2%;
                         font-size: 12px;"';
