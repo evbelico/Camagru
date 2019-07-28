@@ -19,6 +19,15 @@ function submitComment(imageId, userId, snapshot) {
 function ajaxToBack(comment, imageId, userId, snapshotDb) {
 
     let xhr = new XMLHttpRequest();
+    let output = document.createElement("p");
+    let lineBreak = document.createElement("br");
+    let timeStamp = "Just now";
+    let poster = "You";
+    let section = document.querySelector('a[data-img="' + imageId + '"]');
+    output.innerHTML = '<b><i>' + poster + '</b> ' + comment + '<br/><b>' + timeStamp + '</i></b>';
+    output.className = "typewriter";
+    section.after(output);
+
     xhr.open("POST", "actions/comments.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send("comment=" + comment + "&imageid=" + imageId + "&userid=" + userId + "&snapshot=" + snapshotDb);

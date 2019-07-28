@@ -26,7 +26,7 @@ require_once('functions/montage.php');
 			<div id="uploadFile">
 				<button type="submit" id="upload-btn" value="submit" class="capture-button">Upload image file</button>
 			</div>
-			<input type="file" id="inputFile" accept="image/png image/jpeg" style="display:none;">
+			<input type="file" id="inputFile" accept="image/png image/jpeg image/jpg" style="display:none;">
 		</div>
 	</div>
 		<br/>

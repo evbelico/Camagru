@@ -69,7 +69,7 @@ require_once('functions/likes.php');
         $i = 0;
         while ($i != $per_page && $snapshots[$i]) {
             echo '<div id="container" data-src="'.$snapshots[$i]['id'].'">';
-		    echo '<a href="/snapshots/'.$snapshots[$i]['img'].'">';
+		    echo '<a data-img="'. $snapshots[$i]['id'] .'" href="/snapshots/'.$snapshots[$i]['img'].'">';
             echo '<img src="/snapshots/'.$snapshots[$i]['img'].'" id="'.$snapshots[$i]['id'].'">';
             echo '</a>';
             echo '<br/>';
@@ -116,11 +116,11 @@ require_once('functions/likes.php');
                 echo $like_button;
                 echo $dislike_button;
                 
-                $nb_likes_btn = '<button type="submit" id="display-like-'. $snapshots[$i]['id'] .'" name="display-like" disabled>'. get_nb_likes($snapshots[$i]['id']) .' &#8593; </button>';
+                $nb_likes_btn = '<button type="button" id="display-like-'. $snapshots[$i]['id'] .'" name="display-like" disabled>'. get_nb_likes($snapshots[$i]['id']) .' &#8593; </button>';
                 $nb_dislikes_btn = '<button type="submit" id="display-dislike-'. $snapshots[$i]['id'] .'" name="display-dislike" disabled>'. get_nb_dislikes($snapshots[$i]['id']) .' &#8595; </button>';
                 echo $nb_likes_btn;
                 if ($_SESSION['userid'] == $snapshots[$i]['userid']) {
-                    $delete_button = '<button type="submit" id="submit-delete-'. $snapshots[$i]['id'] .'" class="delete-btn" name="submit-delete" onclick="submitDelete('. $snapshots[$i]['id'] .', '. $snapshots[$i]['userid'] .', \'/snapshots/'. $snapshots[$i]['img'] .'\')"> Delete </button>';
+                    $delete_button = '<button type="button" id="submit-delete-'. $snapshots[$i]['id'] .'" class="delete-btn" name="submit-delete" onclick="submitDelete('. $snapshots[$i]['id'] .', '. $snapshots[$i]['userid'] .', \'/snapshots/'. $snapshots[$i]['img'] .'\')"> Delete </button>';
                     echo $delete_button;
                 }
                 echo $nb_dislikes_btn;

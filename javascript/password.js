@@ -30,5 +30,5 @@ function ajaxPasswordToBack(email, password, passwordConfirm) {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "actions/forgot.php");
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("mail=" + email + "&password=" + password + "&password-confirm=" + passwordConfirm);
+    xhr.send("mail=" + email + "&password-reset=" + password + "&password-reset-confirm=" + passwordConfirm);
 }

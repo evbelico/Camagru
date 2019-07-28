@@ -2,7 +2,7 @@
 if (isset($_SESSION['loggued-on-user']) && !empty($_SESSION['loggued-on-user'])) {
 ?>
 <div id="content">
-    <h3 class="login"><?php echo $_SESSION['loggued-on-user'] . ' / ' . $_SESSION['mail']; ?></h3>
+    <h3 class="login"><?php echo $_SESSION['loggued-on-user'] . ' <br/>AKA<br/>' . $_SESSION['mail']; ?></h3>
     <br />
     <form action="actions/modify.php" method="post">
         <h3>Change my username</h3>
@@ -28,6 +28,7 @@ if (isset($_SESSION['loggued-on-user']) && !empty($_SESSION['loggued-on-user']))
         <br />
         <button type="submit" name="username-submit">Change username</button>
     </form>
+    <br/>
     <form action="actions/modify.php" method="post">
         <h3>Change my e-mail address</h3>
 
@@ -52,6 +53,7 @@ if (isset($_SESSION['loggued-on-user']) && !empty($_SESSION['loggued-on-user']))
         <br />
         <button type="submit" name="mail-submit">Change e-mail</button>
     </form>
+    <br/>
     <form action="actions/modify.php" method="post">
         <h3>Change my password</h3>
 
@@ -76,6 +78,7 @@ if (isset($_SESSION['loggued-on-user']) && !empty($_SESSION['loggued-on-user']))
         <br />
         <button type="submit" name="password-submit">Change password</button>
     </form>
+    <br/>
     <form action="actions/modify.php" method="post">
         <h3>Get comment mails ?</h3>
         
@@ -101,6 +104,7 @@ if (isset($_SESSION['loggued-on-user']) && !empty($_SESSION['loggued-on-user']))
         <br/>
         <button type="submit" name="mailing-submit">Go</button>
     </form>
+    <br/>
     <form action="actions/delete.php" method="post">
         <h3>Delete my account</h3>
         

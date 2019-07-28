@@ -23,11 +23,11 @@ function add_comment($poster, $posterid, $userid, $imageid, $text, $snapshot_src
 
             if ($result > 0) {
                 $style_img = 'style="display: block; width: 50%; border-style: solid; border-width: 2%;"';
-                $style_comment = 'style="display: block; width: 50%; border-style: solid; border-width: 2%;
+                $style_comment = 'style="display: block; width: 50%; border-style: solid; border-width: 5px;
                         font-size: 12px;"';
                 $class_comment = 'class="typewriter"';
-                $picture = '<a href="'. URLROOT .'/snapshots/'. $snapshot_src .'"></a><br/>';
-                $comment = '<p '.$style_comment. ' '. $class_comment. ' ><b>'. $poster .'</b> '. $text . '</p>';
+                $picture = '<a href="'. URLROOT .'/snapshots/'. $snapshot_src .'">Your picture</a><br/>';
+                $comment = '<p '. $style_comment .' '. $class_comment. ' ><b>'. $poster .'</b> '. $text . '</p>';
                 $content = $picture . $comment;
                 comment_mail($result['username'], $result['mail'], $content, $poster);
                 return (TRUE);

@@ -151,7 +151,10 @@ function reset_password($mail, $password) {
             $sql = "UPDATE camagru.users SET `password`=:pass WHERE mail=:mail";
             $request = $cxn->prepare($sql);
             $request->execute(array(':pass' => $password, ':mail' => $result['mail']));
+            header("Location: ../signin.php");
         }
+        else
+            header("Location: ../index.php");
     }
     catch (PDOException $e) {
         echo "ERROR : could not reset old password : ". $e->getMessage() ."\nAborting.\n";

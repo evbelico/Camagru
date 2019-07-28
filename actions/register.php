@@ -41,7 +41,7 @@ if (isset($_POST['register-submit'])) {
         }
     }
     else {
-        $_SESSION['register-msg'] = $messages;
+        $_SESSION['reset-error'] = $messages;
         header("Location: ../register.php");
         return;
     }

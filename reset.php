@@ -4,6 +4,14 @@ require_once('config/database.php'); ?>
 
     <?php if (forgot_token($_GET['reset']) == TRUE) { ?>
         <div id="content">
+            <form action="actions/forgot.php" method="post">
+            <?php if (isset($_SESSION['reset-error']) && !empty($_SESSION['reset-error'])) {
+            echo '<ul id="form-messages">';
+            foreach ($_SESSION['reset-error'] as $msg)
+                echo '<li>'. $msg . '</li>';
+            echo '</ul>';
+            $_SESSION['reset-error'] = null;
+            }?>
             <div class="typewriter">
                 <h3>Password reset</h3><br/>
                 <label for="mail">E-mail</label><br/>
@@ -16,8 +24,9 @@ require_once('config/database.php'); ?>
                 <input class="typewriter" id="pwd-confirm" type="password" name="password-reset-confirm" placeholder="Enter new password again" required>
                 <br/>
                 <button id="submit-btn" type="submit" name="reset-submit">Submit</button>
+            </form>
             </div>
         </div>
-        <script type="text/javascript" src="<?php echo URLROOT; ?>javascript/password.js"></script>
+        <!-- <script type="text/javascript" src="<?php echo URLROOT ?>javascript/password.js"></script> -->
     <?php } else { header("Location: ../forgot.php?error=notallowed"); } ?>
 <?php require_once('html_fragments/footer.php'); ?>

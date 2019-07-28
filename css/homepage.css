@@ -80,7 +80,9 @@
 
 #content h3 {
     font-size: 1.8vw;
+    width: 60%;
     margin-bottom: 3%;
+    margin: 3% auto;
     color: #ffffff;
     background-color: #30ff9a;
 }
@@ -112,9 +114,13 @@
 
 #content label { font-size: 1.4vw; font-weight: bold; }
 
-.login {
+#content .login {
+    border: 0.10vw solid #30ff9a;
+    width: 50%;
+    padding: 1vw;
     font-size: 1.8vw;
     color: #000000;
+    background-color: #ffffff;
 }
 
 /* WEBCAM AND FILE UPLOAD */
