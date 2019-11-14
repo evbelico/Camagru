@@ -33,6 +33,6 @@ The personnal user page, which contains all their information.\
 There, they can change :
 * Their username
 * Their e-mail address
-* Their password\
+* Their password
 
 They can also delete their account (*all content will disappear, no data will be kept*).
