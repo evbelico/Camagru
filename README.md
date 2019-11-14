@@ -35,4 +35,4 @@ There, they can change :
 * Their e-mail address
 * Their password\
 
-They can also delete their account (*all content will be disappear, no data will be kept*).
+They can also delete their account (*all content will disappear, no data will be kept*).
